@@ -18,7 +18,7 @@ class BaiduLinkSubmitController extends Controller
      */
     public function LinkResults()
     {
-        $articles=Baidusubmitlink::latest()->orderBy('id','desc ')->paginate(30);
+        $articles=Baidusubmitlink::latest()->orderBy('id','desc')->paginate(30);
         return view('admin.linkresults',compact('articles'));
     }
 }

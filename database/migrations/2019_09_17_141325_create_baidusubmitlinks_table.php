@@ -15,21 +15,15 @@ class CreateBaidusubmitlinksTable extends Migration
     {
         Schema::create('baidusubmitlinks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('remain')->default(0);
+            $table->integer('remain')->default(0)->index();
             $table->integer('success')->default(0);
-            $table->integer('success_realtime')->default(0);
-            $table->integer('remain_realtime')->default(0);
-            $table->string('type')->nullable();
+            $table->integer('success_realtime')->default(0)->index();
+            $table->integer('remain_realtime')->default(0)->index();
+            $table->string('type')->nullable()->index();
             $table->integer('error')->default(0);
-            $table->integer('mid')->default(0);
+            $table->integer('mid')->default(0)->index();
             $table->string('message')->nullable();
-            $table->string('url')->nullable();
-            $table->index('remain');
-            $table->index('success');
-            $table->index('success_realtime');
-            $table->index('remain_realtime');
-            $table->index('type');
-            $table->index('mid');
+            $table->string('url')->nullable()->index();
             $table->timestamps();
         });
     }

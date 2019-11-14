@@ -74,7 +74,6 @@
                             <div class="col-sm-5 basic_info">
                                 {{Form::radio('mid', '1', true,array('class'=>"flat-red"))}} 品牌类型
                                 {{Form::radio('mid', '0',false,array('class'=>"flat-red"))}} 普通文章
-                                {{Form::radio('mid', '2',false,array('class'=>"flat-red"))}} 展会文档
                             </div>
                         </div>
 

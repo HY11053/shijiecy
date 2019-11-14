@@ -43,7 +43,6 @@
                     <li @if(Request::getRequestUri()=='/admin/brandarticle/ownership')class="active" @endif><a href="/admin/brandarticle/ownership"><i class="fa fa-circle-o"></i> 我发布的品牌</a></li>
                     <li @if(Request::getRequestUri()=='/admin/brandarticle/pendingaudit')class="active" @endif><a href="/admin/brandarticle/pendingaudit"><i class="fa fa-circle-o"></i> 待审核的品牌</a></li>
                     <li @if(Request::getRequestUri()=='/admin/article/pedingbrands')class="active" @endif><a href="/admin/article/pedingbrands"><i class="fa fa-circle-o"></i> 待发布的品牌</a></li>
-                    <li @if(Request::getRequestUri()=='/admin/zhanhui')class="active" @endif><a href="/admin/zhanhui"><i class="fa fa-circle-o"></i> 展会文档列表</a></li>
                 </ul>
             </li>
             <li class="treeview">

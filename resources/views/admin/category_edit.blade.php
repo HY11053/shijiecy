@@ -74,15 +74,9 @@
                                 @if($typeinfos->mid==1)
                                     {{Form::radio('mid', '1', true,array('class'=>"flat-red",'checked'=>'checked'))}} 品牌类型
                                     {{Form::radio('mid', '0',false,array('class'=>"flat-red"))}} 普通文章
-                                    {{Form::radio('mid', '2',false,array('class'=>"flat-red"))}} 展会文档
-                                @elseif($typeinfos->mid==2)
-                                        {{Form::radio('mid', '1', true,array('class'=>"flat-red"))}} 品牌类型
-                                        {{Form::radio('mid', '0',false,array('class'=>"flat-red"))}} 普通文章
-                                        {{Form::radio('mid', '2',false,array('class'=>"flat-red",'checked'=>'checked'))}} 展会文档
                                 @else
                                     {{Form::radio('mid', '1', true,array('class'=>"flat-red"))}} 品牌类型
                                     {{Form::radio('mid', '0',false,array('class'=>"flat-red",'checked'=>'checked'))}} 普通文章
-                                    {{Form::radio('mid', '2',false,array('class'=>"flat-red"))}} 展会文档
                                 @endif
                             </div>
                         </div>
@@ -181,7 +175,7 @@
                     <!-- /.tab-pane -->
                     <div class=" tab-pane" id="activity">
                         @include('admin.layouts.summernote')
-                        <div style="display: none">{{Form::textarea('contents', null, array('id'=>'lawsContent'))}}</div>
+                        <div style="display: none">{{Form::textarea('body', null, array('id'=>'lawsContent'))}}</div>
 
                     </div>
                     <!-- /.tab-pane -->

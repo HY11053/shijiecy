@@ -15,9 +15,8 @@ class CreateInvestmentTypesTable extends Migration
     {
         Schema::create('investment_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
+            $table->string('type')->index();
             $table->timestamps();
-            $table->index('type');
         });
     }
 

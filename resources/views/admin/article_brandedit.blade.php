@@ -104,24 +104,6 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-12">
-                                {{Form::label('brandpsp', '品牌特色', array('class' => 'control-label col-md-2 col-sm-3 col-xs-12'))}}
-                                <div class="col-md-4 col-sm-9 col-xs-12">
-                                    {{Form::text('brandpsp',null, array('class' => 'form-control col-md-10','id'=>'brandpsp','rows'=>3,'placeholder'=>'品牌特色' ,'required'=>'required'))}}
-                                </div>
-                            </div>
-                            <div class="form-group col-md-12 ">
-                                {{Form::label('isedit', '修改状态', array('class' => 'control-label col-md-2 col-sm-3 col-xs-12'))}}
-                                <div class="radio col-md-4 col-sm-9 col-xs-12">
-                                    @if($articleinfos->isedit)
-                                        {{Form::radio('isedit', '1', true,array('class'=>'flat-red','checked'=>'checked'))}} 已修改
-                                        {{Form::radio('isedit', '0', false,array('class'=>'flat-red'))}}未修改
-                                    @else
-                                        {{Form::radio('isedit', '1', true,array('class'=>'flat-red'))}} 已修改
-                                        {{Form::radio('isedit', '0', false,array('class'=>'flat-red','checked'=>'checked'))}}未修改
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="form-group col-md-12">
                                 {{Form::label('description', '文档描述', array('class' => 'control-label col-md-2 col-sm-3 col-xs-12'))}}
                                 <div class="col-md-4 col-sm-9 col-xs-12">
                                     {{Form::textarea('description',null, array('class' => 'form-control col-md-10','id'=>'desrciption','rows'=>3,'placeholder'=>'不填写将自动提取首段'))}}
@@ -315,76 +297,6 @@
                                     {{Form::label('registeredcapital', '注册资金', array('class' => 'control-label col-md-2 col-sm-3 col-xs-12'))}}
                                     <div class="col-md-8 col-sm-9 col-xs-12">
                                         {{Form::text('registeredcapital', null, array('class' => 'form-control col-md-10','id'=>'registeredcapital','placeholder'=>'注册资金'))}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="timeline-footer">
-                            <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                        </div>
-                    </div>
-                </li>
-                <!-- END timeline item -->
-                <!-- timeline item -->
-                <li>
-                    <i class="fa   fa-recycle bg-yellow"></i>
-                    <div class="timeline-item">
-                        <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-                        <h3 class="timeline-header"><a href="#">店铺成本</a> 店铺各项成本开支</h3>
-                        <div class="timeline-body">
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    {{Form::label('decorationpay', '装修费用', array('class' => 'control-label col-md-2 col-sm-3 col-xs-12'))}}
-                                    <div class="col-md-8 col-sm-9 col-xs-12">
-                                        {{Form::text('decorationpay',mt_rand (20000,50000), array('class' => 'form-control col-md-10','id'=>'decorationpay','placeholder'=>'装修费用'))}}
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    {{Form::label('quartersrent', '前两季度房租', array('class' => 'control-label col-md-2 col-sm-3 col-xs-12'))}}
-                                    <div class="col-md-8 col-sm-9 col-xs-12">
-                                        {{Form::text('quartersrent', mt_rand (2000,5000), array('class' => 'form-control col-md-10','id'=>'quartersrent','placeholder'=>'前两季度房租'))}}
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    {{Form::label('equipmentcost', '铺货/设备费用', array('class' => 'control-label col-md-2 col-sm-3 col-xs-12'))}}
-                                    <div class="col-md-8 col-sm-9 col-xs-12">
-                                        {{Form::text('equipmentcost', mt_rand (10000,20000), array('class' => 'form-control col-md-10','id'=>'equipmentcost','placeholder'=>'铺货/设备费用'))}}
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    {{Form::label('workingcapital', '流动资金', array('class' => 'control-label col-md-2 col-sm-3 col-xs-12'))}}
-                                    <div class="col-md-8 col-sm-9 col-xs-12">
-                                        {{Form::text('workingcapital', 20000, array('class' => 'form-control col-md-10','id'=>'workingcapital','placeholder'=>'流动资金'))}}
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    {{Form::label('laborquarter', '人工开支', array('class' => 'control-label col-md-2 col-sm-3 col-xs-12'))}}
-                                    <div class="col-md-8 col-sm-9 col-xs-12">
-                                        {{Form::text('laborquarter', mt_rand (2000,5000), array('class' => 'form-control col-md-10','id'=>'laborquarter','placeholder'=>'一季度人工开支'))}}
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    {{Form::label('miscellaneous', '工商税务杂项', array('class' => 'control-label col-md-2 col-sm-3 col-xs-12'))}}
-                                    <div class="col-md-8 col-sm-9 col-xs-12">
-                                        {{Form::text('miscellaneous', mt_rand (2000,5000), array('class' => 'form-control col-md-10','id'=>'miscellaneous','placeholder'=>'工商税务杂项'))}}
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    {{Form::label('dailyvolume', '日成交量', array('class' => 'control-label col-md-2 col-sm-3 col-xs-12'))}}
-                                    <div class="col-md-8 col-sm-9 col-xs-12">
-                                        {{Form::text('dailyvolume', mt_rand (80,100), array('class' => 'form-control col-md-10','id'=>'dailyvolume','placeholder'=>'日成交量'))}}
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    {{Form::label('unitprice', '平均单价', array('class' => 'control-label col-md-2 col-sm-3 col-xs-12'))}}
-                                    <div class="col-md-8 col-sm-9 col-xs-12">
-                                        {{Form::text('unitprice', mt_rand (50,100), array('class' => 'form-control col-md-10','id'=>'unitprice','placeholder'=>'平均单价'))}}
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    {{Form::label('watercoal', '水电煤(元/月)', array('class' => 'control-label col-md-2 col-sm-3 col-xs-12'))}}
-                                    <div class="col-md-8 col-sm-9 col-xs-12">
-                                        {{Form::text('watercoal', mt_rand (200,500), array('class' => 'form-control col-md-10','id'=>'watercoal','placeholder'=>'水电煤(元/月)'))}}
                                     </div>
                                 </div>
                             </div>

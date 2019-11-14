@@ -15,39 +15,30 @@ class CreateArchivesTable extends Migration
     {
         Schema::create('archives', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('typeid');
-            $table->integer('ismake');
-            $table->integer('brandid')->nullable();
-            $table->integer('click');
-            $table->string('title');
+            $table->integer('typeid')->index();
+            $table->integer('ismake')->index();
+            $table->integer('brandid')->nullable()->index();
+            $table->integer('click')->index();
+            $table->string('title')->index();
             $table->string('shorttitle')->nullable();
-            $table->string('bdname')->nullable();
+            $table->string('bdname')->nullable()->index();
             $table->string('flags')->nullable();
             $table->string('tags')->nullable();
-            $table->integer('mid')->default(0);//文档类型
+            $table->integer('mid')->default(0)->index();//文档类型
             $table->string('keywords')->nullable();
             $table->string('description')->nullable();
-            $table->string('write');
-            $table->string('editor')->nullable();
-            $table->string('litpic')->nullable();
-            $table->smallInteger('dutyadmin');
-            $table->smallInteger('editorid')->nullable();
+            $table->string('write')->index();
+            $table->string('editor')->nullable()->index();
+            $table->string('litpic')->nullable()->index();
+            $table->smallInteger('dutyadmin')->index();
+            $table->smallInteger('editorid')->nullable()->index();
             $table->mediumText('imagepics')->nullable();//品牌图集
             $table->text('body')->nullable();
             $table->timestamp('published_at')->nullable();//预选发布时间
+            $table->string('url')->unique();
+            $table->integer('ispush')->default(0)->index();
             $table->timestamps();
-            $table->index('click');
-            $table->index('typeid');
-            $table->index('title');
-            $table->index('shorttitle');
-            $table->index('flags');
-            $table->index('mid');
-            $table->index('write');
-            $table->index('dutyadmin');
-            $table->index('editorid');
-            $table->index('editor');
-            $table->index('published_at');
-            $table->index('created_at');
+
         });
     }
 

@@ -46,7 +46,7 @@ class ArticleController extends Controller
      */
     function Brands()
     {
-        $articles=Brandarticle::withoutGlobalScope(PublishedScope::class)->orderBy('id','desc ')->paginate(30);
+        $articles=Brandarticle::withoutGlobalScope(PublishedScope::class)->orderBy('id','desc')->paginate(30);
         return view('admin.brandarticle',compact('articles'));
     }
     /**品牌文档搜索
@@ -185,10 +185,10 @@ class ArticleController extends Controller
         if (empty($articleinfos)){
             abort(404);
         }
-        if ($articleinfos->dutyadmin==1 && $articleinfos->editor_id==0 &&  Admin::where('id',auth('admin')->id())->value('type')==0)
+        /*if ($articleinfos->dutyadmin==1 && $articleinfos->editor_id==0 &&  Admin::where('id',auth('admin')->id())->value('type')==0)
         {
             exit('文档未领取,不能直接编辑');
-        }
+        }*/
         if ($articleinfos->editor_id!=0 && $articleinfos->editor_id !=auth('admin')->id() &&  Admin::where('id',auth('admin')->id())->value('type')==0)
         {
             exit('文档不属于当前用户或您不是管理员，不能编辑');

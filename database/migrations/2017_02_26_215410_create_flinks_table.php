@@ -15,7 +15,7 @@ class CreateFlinksTable extends Migration
     {
         Schema::create('flinks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('weburl');
+            $table->string('weburl')->unique();
             $table->string('webname');
             $table->string('note')->nullable();
             $table->string('address')->nullable();

@@ -15,18 +15,17 @@ class CreatePhonemanagesTable extends Migration
     {
         Schema::create('phonemanages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('phoneno',500);
+            $table->string('phoneno',11)->index();
             $table->string('name')->nullable();
-            $table->string('gender')->nullable('');
-            $table->string('address')->nullable('');
-            $table->ipAddress('ip')->nullable();
+            $table->string('gender')->nullable()->index();
+            $table->string('address')->nullable();
+            $table->ipAddress('ip')->nullable()->index();
             $table->string('note')->nullable();
-            $table->string('host')->nullable();
-            $table->text('referer')->nullable();
-            $table->text('category')->nullable();
-            $table->text('cid')->nullable();
-            $table->text('brandname')->nullable();
-            $table->index('phoneno');
+            $table->string('host')->nullable()->index();
+            $table->string('referer')->nullable()->index();
+            $table->string('category')->nullable()->index();
+            $table->integer('cid')->nullable()->index();
+            $table->string('brandname')->nullable()->index();
             $table->timestamps();
         });
     }

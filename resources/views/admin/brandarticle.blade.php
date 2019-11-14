@@ -12,10 +12,9 @@
                 <div class="box-header">
                     <h3 class="box-title">文档列表管理 文档总计{{$articles->total()}}</h3>
                     <div class="box-tools">
-                        <div class="pull-right" style="display:inline-block; width: 320px">
+                        <div class="pull-right" style="display:inline-block; width: 220px">
                             <a href="{{action('Admin\ArticleController@Create')}}" style="color: #ffffff ; display: inline-block; padding-left: 3px;"><button  class="btn btn-sm btn-default bg-blue"><i class="fa  fa-pencil-square" style="padding-right: 3px;"></i>添加文档</button></a>
                             <a href="{{action('Admin\ArticleController@BrandCreate')}}" style="color: #ffffff; display: inline-block; padding-left: 3px;"><button  class="btn btn-sm btn-default bg-purple"><i class="fa  fa-pencil-square-o" style="padding-right: 3px;"></i>添加品牌文档</button></a>
-                            <a href="{{action('Admin\ZhanhuiArticleController@ZhanhuiCreate')}}" style="color: #ffffff; display: inline-block; padding-left: 3px;"><button  class="btn btn-sm btn-default bg-green"><i class="fa  fa-pencil-square-o" style="padding-right: 3px;"></i>添加展会文档</button></a>
                         </div>
                         <form action="/admin/brand_search" method="post" class="form-group pull-right col-md-2 col-xs-6">
                             <div class="input-group input-group-sm ">
