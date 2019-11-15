@@ -62,12 +62,6 @@ Route::group(['prefix' => 'admin'],function ()
     Route::any('article/search','ArticleController@PostArticleSearch')->name('article_search');
     Route::put('article/edit/{id}','ArticleController@PostEdit')->name('article_edit')->where('id', '[0-9]+');
     Route::put('brandarticle/edit/{id}','ArticleController@PostBrandArticleEditor')->name('brand_article_edit')->where('id', '[0-9]+');
-    Route::get('zhanhui','ZhanhuiArticleController@Index');
-    Route::get('zhanhui/create','ZhanhuiArticleController@ZhanhuiCreate');
-    Route::post('zhanhui/create','ZhanhuiArticleController@PostZhanhuiCreate')->name('zhanhui_create');
-    Route::get('zhanhui/edit/{id}','ZhanhuiArticleController@ZhanhuiUpdate');
-    Route::put('zhanhui/edit/{id}','ZhanhuiArticleController@postZhanhuiUpdate')->name('zhanhui_edit');
-    Route::post('zhanhui/delete/{id}','ZhanhuiArticleController@postZhanhuiDelete');
     Route::get('flink','FlinkController@Index');
     Route::get('flink/create','FlinkController@CreateFlink');
     Route::get('flink/edit/{id}','FlinkController@EditFlink')->where('id', '[0-9]+');
@@ -116,7 +110,7 @@ Route::group(['prefix' => 'admin'],function ()
     Route::get('makesitemap','SiteMapController@Index');
     Route::get('makemsitemap','SiteMapController@MobileSitemap');
     Route::get('phone','PhoneManageController@Index')->name('phone_filter');
-    Route::get('phonesotr','PhoneManageController@PhoneSort')->name('phone_sort');
+    Route::get('phoneexport','PhoneManageController@PhoneExcelExport')->name('phone_export');
     Route::post('phone/create','PhoneManageController@CreatePhoneManage');
     Route::get('phone/edit/{id}','PhoneManageController@PhoneManageEdit')->where('id', '[0-9]+');
     Route::put('phone/edit/{id}','PhoneManageController@PhoneManageEditPost')->where('id', '[0-9]+');

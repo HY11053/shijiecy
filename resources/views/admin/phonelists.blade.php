@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">电话提交列表{{$phoneNos->total()}}</h3>
+                    <h3 class="box-title">电话提交列表{{$phoneNos->total()}} <a href="/admin/phoneexport?{{Request::getQueryString()}}">点击导出当日数据</a></h3>
                     {{Form::open(array('route' => 'phone_filter','files' => false,'class'=>'form-inline pull-right','method'=>'get'))}}
                     <div class="form-group">
                         <div class="input-group date " >
@@ -48,87 +48,49 @@
                             <th>姓名</th>
                             <th>电话</th>
                             <th>备注</th>
-                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 322px;">
-                                <a href="/admin/phonesotr">提交页面</a></th>
-                            <th>品牌分类</th>
                             <th>来源</th>
-                            <th>IP</th>
+                            <th>提交页面</th>
+                            <th>匹配计划</th>
+                            <th>匹配单元</th>
+                            <th>搜索词</th>
+                            <th>匹配关键词</th>
                             <th>归属地</th>
                             <th>提交时间</th>
                             <th>操作</th>
                         </tr>
                         </thead>
-                        @foreach($phoneNos as $adminlist)
+                        @foreach($phoneNos as $phoneNo)
                         <tr>
-                            <td>{{$adminlist->id}}.</td>
-                            <td>{{$adminlist->name}}</td>
-                            {{--{{substr_replace(decrypt($adminlist->phoneno),'***',3,3)}}--}}
+                            <td>{{$phoneNo->id}}.</td>
+                            <td>{{$phoneNo->name}}</td>
                             @if(auth('admin')->id()==1)
-                            <td>{{decrypt($adminlist->phoneno)}}</td>
+                                <td>{{$phoneNo->phoneno}}</td>
                             @else
-                            <td>{{substr_replace(decrypt($adminlist->phoneno),'***',3,3)}}</td>
+                                <td>{{substr_replace($phoneNo->phoneno,'***',3,3)}}</td>
                             @endif
-                            <td>{{str_limit($adminlist->note,10,'')}}</td>
-                           <td>{{str_limit($adminlist->host,73,'')}}</td>
-                           <td>
-                               @php
-                                   preg_match('#\/news\/(\d+)\.shtml#',$adminlist->host,$matches);
-                                   if (isset($matches[1]))
-                                   {
-                                   $thisartcileinfos=\App\AdminModel\Archive::where('id',$matches[1])->first(['id','brandid','created_at','typeid']);
-                                   $thisbrandartcileinfos=\App\AdminModel\Brandarticle::where('id',$thisartcileinfos->brandid)->first(['id','brandname','typeid']);
-                                   if ($thisartcileinfos->brandid && isset($thisbrandartcileinfos->brandname))
-                                   {
-                                    $brand=$thisbrandartcileinfos->brandname;
-                                    $type=$thisbrandartcileinfos->arctype->typename;
-                                   }elseif($thisartcileinfos->bdname){
-                                    $brand=$thisartcileinfos->bdname;
-                                    $type='暂未分类';
-                                   }else{
-                                   $brand='暂未分类';
-                                    $type='暂未分类';
-                                   }
-                                   $isnew=\App\AdminModel\Archive::where('id',$matches[1])->value('created_at')>\Carbon\Carbon::now()->subMonth()?'<i class="fa  fa-fire"></i>':'';
-                                   }else{
-                                       preg_match('#\/xm\/(\d+)\.shtml#',$adminlist->host,$matches);
-                                       if (isset($matches[1])){
-                                           $brand=\App\AdminModel\Brandarticle::where('id',$matches[1])->value('brandname');
-                                           if(empty($brand))
-                                           {
-                                           $brand='品牌已删除';
-                                            $type='';
-                                            $isnew='';
-                                           }else{
-                                           $brandarticle=\App\AdminModel\Brandarticle::where('id',$matches[1])->first();
-                                           $isnew=\App\AdminModel\Brandarticle::where('id',$matches[1])->value('created_at')>\Carbon\Carbon::now()->subMonth()?'<i class="fa  fa-fire"></i>':'';
-                                           $type=$brandarticle->arctype->typename;
-                                           }
-                                       }else{
-                                       $brand='暂未分类';
-                                       $type='';
-                                       $isnew='';
-                                       }
-                                   }
-                               echo '<span style="color:red;">'.$isnew.'</span>'.$brand.'——<strong style="color:red;">'.$type.'</strong>';
-                               @endphp
-                           </td>
-                           <td title="{{$adminlist->referer}}">
-                               @if(stristr($adminlist->referer,'baidu') || str_contains($adminlist->referer,'mipcdn'))
+                            <td>{{str_limit($phoneNo->note,10,'')}}</td>
+                           <td title="{{$phoneNo->referer}}">
+                               @if(stristr($phoneNo->referer,'baidu') || str_contains($phoneNo->referer,'mipcdn'))
                                    百度
-                               @elseif(stristr($adminlist->referer,'so.com'))
+                               @elseif(stristr($phoneNo->referer,'so.com'))
                                    360
-                               @elseif(stristr($adminlist->referer,'sogou'))
+                               @elseif(stristr($phoneNo->referer,'sogou'))
                                    搜狗
-                               @elseif(stristr($adminlist->referer,'sm.cn') || str_contains($adminlist->referer,'sm-tc.cn'))
+                               @elseif(stristr($phoneNo->referer,'sm.cn') || str_contains($phoneNo->referer,'sm-tc.cn'))
                                神马
                                @else
                                 其他
                                @endif
                            </td>
-                           <td>{{$adminlist->ip}}</td>
-                            <td>@if($adminlist->ip) @foreach(\Zhuzhichao\IpLocationZh\Ip::find(trim($adminlist->ip)) as $index=>$area) @if($index<3){{$area}}-@endif @endforeach @endif</td>
-                            <td>{{$adminlist->created_at}}</td>
-                            <td class="newcolor"><span class="badge bg-green"><a href="/admin/phone/edit/{{$adminlist->id}}">编辑</a></span> <span class="badge bg-red"><a href="/admin/phone/delete/{{$adminlist->id}}">删除</a> </span></td>
+                            <td>{{str_limit($phoneNo->host,73,'')}}</td>
+                            <th>{{$phoneNo->adgroup}}</th>
+                            <th>{{$phoneNo->adunit}}</th>
+                            <th>{{$phoneNo->keywords}}</th>
+                            <th>{{$phoneNo->adkeywords}}</th>
+                           <td>{{$phoneNo->ip}}</td>
+                            <td>@if($phoneNo->ip) @foreach(\Zhuzhichao\IpLocationZh\Ip::find(trim($phoneNo->ip)) as $index=>$area) @if($index<3){{$area}}-@endif @endforeach @endif</td>
+                            <td>{{$phoneNo->created_at}}</td>
+                            <td class="newcolor"><span class="badge bg-green"><a href="/admin/phone/edit/{{$phoneNo->id}}">编辑</a></span> <span class="badge bg-red"><a href="/admin/phone/delete/{{$phoneNo->id}}">删除</a> </span></td>
                         </tr>
                        @endforeach
                     </table>
