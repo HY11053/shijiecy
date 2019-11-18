@@ -14,16 +14,22 @@ class PhoneController extends Controller
 {
     function phoneComplate(Request $request)
     {
-        if(empty(Phonemanage::where('ip', $request->getClientIp())->where('created_at','>',Carbon::now()->subSeconds(10))->where('created_at','<',Carbon::now())->value('ip')))
+        if(empty(Phonemanage::where('ip', $request->getClientIp())->where('created_at','>',Carbon::now()->subSeconds(120))->where('created_at','<',Carbon::now())->value('ip')))
         {
             $request['host']=$request->input('host');
             $request['ip']=$request->getClientIp();
-            Phonemanage::create($request->all());
-            Admin::first()->notify(new MailSendNotification(Phonemanage::latest() ->first()));
-            //event(new PhoneEvent(Phonemanage::latest() ->first()));
-            echo '电话提交成功！我们将尽快与您联系';
+            if (Phonemanage::create($request->all())->wasRecentlyCreated){
+                Admin::first()->notify(new MailSendNotification(Phonemanage::latest() ->first()));
+                //event(new PhoneEvent(Phonemanage::latest() ->first()));
+                $info=['statusinfo'=>'电话提交成功，我们将尽快与您联系'];
+                echo $request->input('callback')."(".json_encode($info).")";
+            }else{
+                $info=['statusinfo'=>'service error'];
+                echo $request->input('callback')."(".json_encode($info).")";
+            }
         }else{
-            echo '电话号码已存在，请点击在线咨询客服';
+            $info=['statusinfo'=>'电话已存在,请直接点击咨询我们'];
+            echo $request->input('callback')."(".json_encode($info).")";
         }
     }
 }

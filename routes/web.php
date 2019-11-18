@@ -12,7 +12,7 @@
 */
 Auth::routes();
 Route::get('/', 'Frontend\IndexController@index')->name('index');
-Route::post('phonecomplate', 'Frontend\PhoneController@phoneComplate');
+Route::get('phonecomplate', 'Frontend\PhoneController@phoneComplate');
 Route::get('nccp', 'Frontend\IndexController@nccp');
 Route::get('news', 'Frontend\IndexController@news');
 Route::get('zjpp', 'Frontend\IndexController@zjpp');
