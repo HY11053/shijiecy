@@ -90,6 +90,7 @@ class PhoneManageController extends Controller
      */
     function DeletePhone(Request $request,$id)
     {
+        dd('禁止删除！');
         if(auth('admin')->id()==7 || auth('admin')->id()==1)
         {
             Phonemanage::findOrFail($id)->delete();

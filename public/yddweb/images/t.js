@@ -22,7 +22,7 @@ $(function() {
             if (phoneno && /^1[3|4|5|8]\d{9}$/.test(phoneno)) {
                 $.ajax({
                     type:"GET",
-                    url: "/phonecomplate",
+                    url: "http://wdcp.szhqzl.cn/phonecomplate",
                     dataType: 'JSONP',
                     data: {
                         "phoneno": phoneno,
@@ -52,7 +52,7 @@ $(function() {
             if (phoneno && /^1[3|4|5|8]\d{9}$/.test(phoneno)) {
                 $.ajax({
                     type: "GET",
-                    url: "/phonecomplate",
+                    url: "http://wdcp.szhqzl.cn/phonecomplate",
                     dataType: 'JSONP',
                     data: {
                         "phoneno": phoneno,
@@ -84,7 +84,7 @@ $(function() {
             if (phoneno && /^1[3|4|5|8]\d{9}$/.test(phoneno)) {
                 $.ajax({
                     type: "GET",
-                    url: "/phonecomplate",
+                    url: "http://wdcp.szhqzl.cn/phonecomplate",
                     dataType: 'JSONP',
                     data: {
                         "phoneno": phoneno,
@@ -125,7 +125,7 @@ $(function() {
             if( phoneno  && /^1[3|4|5|8]\d{9}$/.test(phoneno ) ){
                 $.ajax({
                     type:"GET",
-                    url:"/phonecomplate",
+                    url:"http://wdcp.szhqzl.cn/phonecomplate",
                     data:{"phoneno":phoneno,"host":host,"name":name},
                     dataType: 'JSONP',
                     jsonpCallback:"success_jsonpCallback",
@@ -144,7 +144,15 @@ $(function() {
         }
     });
 });
-function openSwt() {
+/*function openSwt() {
     $(".popup_mask").css('visibility', 'visible').fadeIn(600);
+    $("#nb_invite_wrap").css('display','none');
 }
-setTimeout(openSwt, 10000);
+setTimeout(openSwt, 10000);*/
+function hideBridge(){
+    $("#nb_invite_wrap").css('display','none');
+}
+hideBridge()
+$(window).scroll(function(event){
+    $("#nb_invite_wrap").css('display','none');
+});

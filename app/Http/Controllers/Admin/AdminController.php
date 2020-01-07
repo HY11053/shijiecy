@@ -35,7 +35,7 @@ class AdminController extends Controller
 
     function Register()
     {
-        return view('admin.adminregister',compact('adminlists'));
+        return view('admin.adminregister');
     }
 
     /**后台用户注册处理
